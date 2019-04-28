@@ -10,6 +10,7 @@ from tablero import settings
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('applications.user.urls',namespace='users')),
+    url(r'^', include('applications.board.urls',namespace='board')),
     url(r'^', include('applications.authentication.urls',namespace='authentication')),
 ]
 

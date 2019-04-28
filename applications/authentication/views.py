@@ -1,21 +1,35 @@
-from django.shortcuts import render
-from django.shortcuts import render
-from django.http import HttpResponse
 from django.views.generic import TemplateView
 from django.shortcuts import render, render_to_response
 from django.template import RequestContext
 from .forms import  getRegister
 from applications.user.models import Users
 from django.contrib.auth.models import User
-import hashlib
-
+from django.contrib.auth import authenticate
 
 # Create your views here.
-class index(TemplateView):
+class login(TemplateView):
     def get(self, request, *args, **kwargs):
         context = {}
         return render(request, 'login.html', context)
 
+    def post(self, request, *args, **kwargs):
+        print("Dentro del post")
+        email = request.POST['email']
+        password = request.POST['password']
+        context = {}
+        user = authenticate(username=email, password=password)
+        if user is not None:
+            userAuth_p = User.objects.get(email=email)
+            authentication = True
+            #name = userAuth_p.name
+            request.session['emailUser'] = user.email
+            #request.session['name'] = name
+            context = {'authentication':authentication,'email':email}
+            url = 'base.html'
+            return render(request,url,context)
+        else:
+            context = {'messageT':True, 'message':"User or pass invalid."}
+            return render(request, 'login.html', context)
 
 class registerPage(TemplateView):
     def get(self, request, *args, **kwargs):
