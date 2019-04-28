@@ -8,5 +8,5 @@ from .views import Users
 
 app_name="user_app"
 urlpatterns = [
-    url(r'^register/$',Users.as_view(), name='register'),
+    #url(r'^register/$',Users.as_view(), name='register'),
 ]

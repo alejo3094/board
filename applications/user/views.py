@@ -6,8 +6,6 @@ from django.template import RequestContext
 
 # Create your views here.
 
-
-
 class Users(TemplateView):
     def get(self,request,*args, **kwargs):
         context ={}
