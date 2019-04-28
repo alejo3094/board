@@ -1,0 +1,84 @@
+{% load staticfiles %}
+    <div class="panel-heading">
+        <div class="panel-heading-btn">
+            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
+            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+        </div>
+    </div>
+        <!-- begin #header -->
+        <div id="header" class="header navbar navbar-default navbar-fixed-top">
+            <!-- begin container-fluid -->
+            <div class="container-fluid">
+                <!-- begin mobile sidebar expand / collapse button -->
+                <div class="navbar-header">
+                    <a href="/" class="navbar-brand">
+
+                    </a>
+                    <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <!--<ul class="nav navbar-nav2 navbar-center">
+                <div>
+                    <li>
+                        <form class="navbar-form full-width">
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Enter keyword" type="text">
+                                <button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
+                            </div>
+                        </form>
+                    </li>
+                </div>
+                </ul>-->
+                <!-- end mobile sidebar expand / collapse button -->
+                <!-- begin header navigation right -->
+
+                <ul class="nav navbar-nav navbar-right">
+                    
+                    {% if user.tipo == "Cliente" %}      
+                    <li style="margin-top: 7px; ">
+
+                        <form action="{% url 'movies:busqueda' %}" method="POST" class="navbar-form full-width"> {% csrf_token %}
+
+                            <div class="form-group">
+                                Busqueda por 
+                                <select name="tipo">
+                                    <option value="titulo" check>Titulo</option>
+                                    <option value="actor">Actor</option>
+                                </select>
+                                <input name = "busqueda" type="text" class="form-control" placeholder="Busqueda" />                                
+                                <button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
+                            </div>
+                        </form>
+
+                    </li>
+                    <li class="image-inner">
+                        <a href="javascript:;" >
+                        </a>
+                    </li>
+                    {% endif %}
+                    <li class="dropdown navbar-user">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="hidden-xs">{{nombre}}</span> <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu animated fadeInLeft">
+                            <li class="arrow"></li>
+                            {% if user.tipo == "Cliente" %} 
+                            <li><a href="">Perfil</a></li>
+                            <li><a href="">Peliculas Vistas</a></li>
+                            <li><a href="">Peliculas por Ver</a></li>
+                            <li><a href="">Peliculas calificadas</a></li>
+                            <li class="divider"></li>
+                            {% endif %}
+                            <li><a href="">Log Out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- end container-fluid -->
+        </div>
+        <!-- end #header -->
