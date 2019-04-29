@@ -39,7 +39,7 @@
               {% if messageB %}
                   <div class="alert alert-danger">{{message}}</div>
                 {% endif %}
-              <form action="{% url 'authentication:register' %}" method="POST" class="margin-bottom-0" >{% csrf_token %}
+              <form action="{% url 'authentication:register' %}" enctype="multipart/form-data" method="POST" class="margin-bottom-0" >{% csrf_token %}
                    <div class="form-group m-b-20">
                       <label for="id_email">Email:</label>
                        {%if form.name.value %}
@@ -84,6 +84,12 @@
                       {% endif %}
 
                   </div>
+
+                  <div class="form-group m-b-20">
+                      <label for="id_numberID">Photo:</label>
+                      <input type="file"  accept="image/*" class="form-control" id="id_photo"  name= "photo" required >
+                  </div>
+
                   <div class="login-buttons">
                       <button type="submit" class="btn btn-success btn-block btn-lg">Register</button>
                   </div>

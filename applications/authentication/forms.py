@@ -3,8 +3,6 @@ from django.forms import ModelForm
 
 class getRegister(forms.Form):
 
-
-
     email = forms.EmailField(label='Email:',max_length=254)
     name = forms.CharField(label='Name:',max_length=50)
     last_name = forms.CharField(label='Last name:',max_length=50)
